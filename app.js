@@ -1,12 +1,16 @@
 const express = require("express");
 const app = express();
 const routes = require("./routes");
-const PORT = process.env.port || 5000;
+const PORT = process.env.PORT || 5000;
 const db = require("./config/db");
 const cors = require("cors");
 
 app.use(express.json());
 app.use(cors());
+
+app.get("/", (req, res) => {
+  res.json(db);
+});
 
 app.get("/fetch-all", (req, res) => {
   res.json(db);
